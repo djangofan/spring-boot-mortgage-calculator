@@ -25,7 +25,7 @@
             <th>interestPaid</th>
             <th>accumulatedInterest</th>
         </tr>
-        <tr th:each="payment,iterationStatus : ${{monthlyAmortizationSchedule.paymentList}}">
+        <tr th:each="payment,iterationStatus : ${monthlyAmortizationSchedule.paymentList}">
             <td th:text="${iterationStatus.count}">count</td>
             <td th:text="${payment.paymentNumber}">paymentNumber</td>
             <td th:text="${payment.paymentDate}">paymentDate</td>
