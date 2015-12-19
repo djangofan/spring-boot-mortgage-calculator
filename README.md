@@ -3,8 +3,14 @@ Just a mortgage calculator application.
 
 # Versions
 <table>
-<th><td>Tags/Versions</td><td>Description</td></th>
-<tr><td>0.90</td><td>Initial prototype of application.</td></tr>
+  <tr>
+    <th>Tags&#92;Versions</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>0.90</td>
+    <td>Initial prototype.</td>
+  </tr>
 </table>
 
 # Features
