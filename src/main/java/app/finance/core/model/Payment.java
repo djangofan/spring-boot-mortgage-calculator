@@ -1,10 +1,8 @@
 package app.finance.core.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.stereotype.Component;
 import java.util.Date;
 
-@Component
 public class Payment
 {
     private int paymentNumber;
@@ -13,6 +11,24 @@ public class Payment
     private double principalPaid;
     private double interestPaid;
     private double accumulatedInterest;
+
+    /**
+     * Initialize empty Payment.  This should never happen.
+     */
+    public Payment()
+    {
+        this(0, new Date(), 0.00, 0.00, 0.00, 0.00);
+    }
+
+    public Payment(int paymentNumber, Date paymentDate, double balance, double principalPaid, double interestPaid, double accumulatedInterest)
+    {
+        setPaymentNumber(paymentNumber);
+        setPaymentDate(paymentDate);
+        setBalance(balance);
+        setPrincipalPaid(principalPaid);
+        setInterestPaid(interestPaid);
+        setAccumulatedInterest(accumulatedInterest);
+    }
 
     public int getPaymentNumber() { return this.paymentNumber; }
     public void setPaymentNumber(int paymentNumber) { this.paymentNumber = paymentNumber; }

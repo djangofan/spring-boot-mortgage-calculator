@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class GreetingController {
 
-    @RequestMapping(value={"/", "/greeting"}, method=RequestMethod.GET)
+    @RequestMapping(value="/greeting", method=RequestMethod.GET)
     public String greetingForm(Model model) {
         model.addAttribute("greeting", new Greeting());
         return "greeting";
