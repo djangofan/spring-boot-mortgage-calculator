@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Greeting
 {
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "MM/dd/yyyy")
     private Date startDate = new Date();
 
     private double interestRate;

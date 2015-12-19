@@ -35,7 +35,7 @@ public class DispatcherConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public DateFormatter dateFormatter() {
-        return new DateFormatter("yyyy-MM-dd");
+        return new DateFormatter("MM/dd/yyyy");
     }
 
 }
