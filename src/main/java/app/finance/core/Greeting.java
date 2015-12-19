@@ -1,14 +1,13 @@
-package hello;
+package app.finance.core;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
 import java.util.Date;
-import java.util.List;
 
 public class Greeting
 {
-    @DateTimeFormat(pattern = "MM/dd/yyyy")
-    private Date startDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date startDate = new Date();
+
     private double interestRate;
     private double initialBalance;
     private int durationInMonths;

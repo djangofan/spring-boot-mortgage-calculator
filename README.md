@@ -1,5 +1,5 @@
 # spring-boot-mortgage-calculator
-Just a mortgage calculator application.
+Just a mortgage calculator application using spring-boot and Thymeleaf.
 
 # Versions
 <table>

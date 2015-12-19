@@ -1,4 +1,4 @@
-package hello;
+package app.finance.core;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
