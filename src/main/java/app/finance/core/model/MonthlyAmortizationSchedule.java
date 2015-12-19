@@ -1,11 +1,9 @@
 package app.finance.core.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.stereotype.Component;
 import java.util.Date;
 import java.util.List;
 
-@Component
 public class MonthlyAmortizationSchedule
 {
     @DateTimeFormat(pattern = "MM/dd/yyyy") private Date startDate;
@@ -15,7 +13,7 @@ public class MonthlyAmortizationSchedule
     private double futureValue;
     private int paymentType;
     private double monthlyPayment;
-    //private List<Payment> paymentList;
+    private List<Payment> paymentList;
 
     public Date getStartDate()
     {
@@ -77,14 +75,13 @@ public class MonthlyAmortizationSchedule
     }
     public void setMonthlyPayment(double monthlyPayment) { this.monthlyPayment = monthlyPayment; }
 
-    //public List<Payment> getPaymentList() { return this.paymentList; }
-    //public void setPaymentList(List<Payment> paymentList) { this.paymentList = paymentList; }
+    public List<Payment> getPaymentList() { return this.paymentList; }
+    public void setPaymentList(List<Payment> paymentList) { this.paymentList = paymentList; }
 
     /** Add payment to payment list. */
-    //public void addPayment(Payment payment) { this.paymentList.add(payment); }
-
+    public void addPayment(Payment payment) { this.paymentList.add(payment); }
     /** Get payment by its 0-based position in the paymentList. */
-    //public void getPaymentByNumber(int paymentNumber) { this.paymentList.get(paymentNumber); }
+    public Payment getPaymentByNumber(int paymentNumber) { return this.paymentList.get(paymentNumber); }
 
 }
 

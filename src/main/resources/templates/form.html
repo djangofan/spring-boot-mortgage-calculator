@@ -35,6 +35,7 @@
         <p>futureValue: <input type="text" th:field="*{futureValue}" /></p>
         <p>paymentType: <input type="number" th:field="*{paymentType}" /></p>
         <p>monthlyPayment: <input type="text" th:field="*{monthlyPayment}" /></p>
+        <input type="hidden" th:field="*{paymentList}" />
         <p><input type="submit" value="Calculate" /> <input type="reset" value="Reset" /></p>
     </form>
     <br/>

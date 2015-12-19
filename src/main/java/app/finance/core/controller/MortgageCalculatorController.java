@@ -5,6 +5,7 @@ import app.finance.core.model.Payment;
 import app.finance.core.model.MonthlyAmortizationSchedule;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,12 +26,16 @@ public class MortgageCalculatorController
     }
 
     @RequestMapping(value = "/showSchedule", method = RequestMethod.POST)
-    public String calculatePayments(@ModelAttribute MonthlyAmortizationSchedule monthlyAmortizationSchedule, Model model)
+    public String calculatePayments(@ModelAttribute MonthlyAmortizationSchedule monthlyAmortizationSchedule, BindingResult bindingResult, Model model)
     {
+        if (bindingResult.hasErrors())
+        {
+            System.out.println( "There are errors! " + bindingResult.getAllErrors().toString() );
+        }
         initMonthlyAmortizationSchedule(monthlyAmortizationSchedule);
         model.addAttribute(monthlyAmortizationSchedule);
 
-        return "calculation";
+        return "schedule";
     }
 
     private void initMonthlyAmortizationSchedule(MonthlyAmortizationSchedule monthlyAmortizationSchedule)
@@ -61,7 +66,7 @@ public class MortgageCalculatorController
 
             Payment payment = new Payment(paymentNumber, loopDate, balance, principalPaid, interestPaid, accumulatedInterest);
 
-            //monthlyAmortizationSchedule.addPayment(payment);
+            monthlyAmortizationSchedule.addPayment(payment);
 
             if (paymentType == 1)
             {

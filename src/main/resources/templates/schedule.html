@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Result</h1>
+    <p th:text="'startDate: ' + ${{monthlyAmortizationSchedule.startDate}}" />
+    <p th:text="'interestRate: ' + ${monthlyAmortizationSchedule.interestRate}" />
+    <p th:text="'initialBalance: ' + ${monthlyAmortizationSchedule.initialBalance}" />
+    <p th:text="'durationInMonths: ' + ${monthlyAmortizationSchedule.durationInMonths}" />
+    <p th:text="'futureValue: ' + ${monthlyAmortizationSchedule.futureValue}" />
+    <p th:text="'paymentType: ' + ${monthlyAmortizationSchedule.paymentType}" />
+    <p th:text="'monthlyPayment: ' + ${monthlyAmortizationSchedule.monthlyPayment}" />
+    <br/>
+    <h1>Amortization Schedule</h1>
+    <table border="1">
+        <tr>
+            <th>count</th>
+            <th>paymentNumber</th>
+            <th>paymentDate</th>
+            <th>balance</th>
+            <th>principalPaid</th>
+            <th>interestPaid</th>
+            <th>accumulatedInterest</th>
+        </tr>
+        <tr th:each="payment,iterationStatus : ${{monthlyAmortizationSchedule.paymentList}}">
+            <td th:text="${iterationStatus.count}">count</td>
+            <td th:text="${payment.paymentNumber}">paymentNumber</td>
+            <td th:text="${payment.paymentDate}">paymentDate</td>
+            <td th:text="${payment.balance}">balance</td>
+            <td th:text="${payment.principalPaid}">principalPaid</td>
+            <td th:text="${payment.interestPaid}">interestPaid</td>
+            <td th:text="${payment.accumulatedInterest}">accumulatedInterest</td>
+        </tr>
+    </table>
+
+    <br/>
+    <a href="/">Try Again</a>
+</body>
+</html>

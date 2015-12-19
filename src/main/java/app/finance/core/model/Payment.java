@@ -12,14 +12,6 @@ public class Payment
     private double interestPaid;
     private double accumulatedInterest;
 
-    /**
-     * Initialize empty Payment.  This should never happen.
-     */
-    public Payment()
-    {
-        this(0, new Date(), 0.00, 0.00, 0.00, 0.00);
-    }
-
     public Payment(int paymentNumber, Date paymentDate, double balance, double principalPaid, double interestPaid, double accumulatedInterest)
     {
         setPaymentNumber(paymentNumber);
