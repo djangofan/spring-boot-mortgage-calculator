@@ -2,8 +2,10 @@
 Just a mortgage calculator application.
 
 # Versions
-tags: ["0.90"]
-projects: ["Initial prototype"]
+<table>
+<th><td>Tags/Versions</td><td>Description</td></th>
+<tr><td>0.90</td><td>Initial prototype of application.</td></tr>
+</table>
 
 # Features
 
