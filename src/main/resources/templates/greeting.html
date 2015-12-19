@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Mortgage Calculator</title>
+    <script type="text/javascript" src="jquery-2.1.4.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script th:inline="javascript">
+    /*<![CDATA[*/
+    $(document).ready(function(){
+        $('input#interestRate').blur(function(){
+            var num = parseFloat($(this).val());
+            var cleanNum = num.toFixed(2);
+            $(this).val(cleanNum);
+            if(num/cleanNum < 1) {
+                $('#error').text('Please enter only 2 decimal places, we have truncated to 2 precision points.');
+            }
+        });
+    });
+    /*]]>*/
+    </script>
+</head>
+<body>
+	<h1>Form</h1>
+    <form action="#" th:action="@{/greeting}" th:object="${greeting}" method="post">
+        <p>startDate: <input type="date" th:field="*{startDate}" /></p>
+    	<p>interestRate: <input type="text" id="interestRate" name="interestRate" th:field="*{interestRate}" /></p>
+        <p>initialBalance: <input type="text" th:field="*{initialBalance}" /></p>
+        <p>durationInMonths: <input type="number" th:field="*{durationInMonths}" /></p>
+        <p>futureValue: <input type="text" th:field="*{futureValue}" /></p>
+        <p>paymentType: <input type="number" th:field="*{paymentType}" /></p>
+        <p>monthlyPayment: <input type="text" th:field="*{monthlyPayment}" /></p>
+        <p><input type="submit" value="Calculate" /> <input type="reset" value="Reset" /></p>
+    </form>
+    <br/>
+    <br/>
+    <hr/>
+    <script type="text/javascript">
+        $(document).ready(function(){
+          $("#footer").html("YES: jQuery is loaded locally from '/resources/jquery-2.1.4.js'.");
+        });
+    </script>
+    <div id="footer"></div>
+</body>
+</html>
