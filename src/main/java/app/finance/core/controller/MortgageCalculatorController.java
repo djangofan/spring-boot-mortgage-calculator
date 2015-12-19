@@ -21,16 +21,16 @@ public class MortgageCalculatorController
      */
     @RequestMapping(path={"/index", "/"}, method = RequestMethod.GET)
     public String loadInitialFormInput(@ModelAttribute MonthlyAmortizationSchedule monthlyAmortizationSchedule) {
-        return "greeting";
+        return "form";
     }
 
     @RequestMapping(value = "/showSchedule", method = RequestMethod.POST)
-    public String calculatePayments(@ModelAttribute("scheduleAttribute") MonthlyAmortizationSchedule monthlyAmortizationSchedule, Model model)
+    public String calculatePayments(@ModelAttribute MonthlyAmortizationSchedule monthlyAmortizationSchedule, Model model)
     {
         initMonthlyAmortizationSchedule(monthlyAmortizationSchedule);
         model.addAttribute(monthlyAmortizationSchedule);
 
-        return "result";
+        return "calculation";
     }
 
     private void initMonthlyAmortizationSchedule(MonthlyAmortizationSchedule monthlyAmortizationSchedule)
@@ -61,7 +61,7 @@ public class MortgageCalculatorController
 
             Payment payment = new Payment(paymentNumber, loopDate, balance, principalPaid, interestPaid, accumulatedInterest);
 
-            monthlyAmortizationSchedule.addPayment(payment);
+            //monthlyAmortizationSchedule.addPayment(payment);
 
             if (paymentType == 1)
             {

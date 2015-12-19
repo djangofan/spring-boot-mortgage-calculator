@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Result</h1>
+    <p th:text="'startDate: ' + ${{monthlyAmortizationSchedule.startDate}}" />
+    <p th:text="'interestRate: ' + ${monthlyAmortizationSchedule.interestRate}" />
+    <p th:text="'initialBalance: ' + ${monthlyAmortizationSchedule.initialBalance}" />
+    <p th:text="'durationInMonths: ' + ${monthlyAmortizationSchedule.durationInMonths}" />
+    <p th:text="'futureValue: ' + ${monthlyAmortizationSchedule.futureValue}" />
+    <p th:text="'paymentType: ' + ${monthlyAmortizationSchedule.paymentType}" />
+    <p th:text="'monthlyPayment: ' + ${monthlyAmortizationSchedule.monthlyPayment}" />
+    <a href="/form">Try Again</a>
+</body>
+</html>
