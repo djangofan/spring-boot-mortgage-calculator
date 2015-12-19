@@ -67,4 +67,10 @@ public class Payment
     }
     public void setAccumulatedInterest(double accumulatedInterest) { this.accumulatedInterest = accumulatedInterest; }
 
+    @Override
+    public String toString()
+    {
+        return "[" + paymentNumber + "," + paymentDate + "," + balance + "," + principalPaid + "," + interestPaid + "," + accumulatedInterest + "]";
+    }
+
 }

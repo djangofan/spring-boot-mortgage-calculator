@@ -1,6 +1,8 @@
 package app.finance.core.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +15,7 @@ public class MonthlyAmortizationSchedule
     private double futureValue;
     private int paymentType;
     private double monthlyPayment;
-    private List<Payment> paymentList;
+    private List<Payment> paymentList = new ArrayList<Payment>();
 
     public Date getStartDate()
     {
@@ -82,6 +84,12 @@ public class MonthlyAmortizationSchedule
     public void addPayment(Payment payment) { this.paymentList.add(payment); }
     /** Get payment by its 0-based position in the paymentList. */
     public Payment getPaymentByNumber(int paymentNumber) { return this.paymentList.get(paymentNumber); }
+
+    @Override
+    public String toString()
+    {
+        return "[" + startDate + "," + initialBalance + "," + interestRate + "," + durationInMonths + "," + futureValue + "," + paymentType + "," + monthlyPayment + "]";
+    }
 
 }
 
