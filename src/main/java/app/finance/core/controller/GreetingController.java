@@ -1,5 +1,6 @@
-package app.finance.core;
+package app.finance.core.controller;
 
+import app.finance.core.model.Greeting;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;

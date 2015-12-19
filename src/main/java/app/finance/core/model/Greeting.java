@@ -1,4 +1,4 @@
-package app.finance.core;
+package app.finance.core.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
