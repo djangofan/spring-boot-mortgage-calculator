@@ -1,9 +1,10 @@
-Things Improved From original gs-handling-form-submission Demo
+Things I noticed after starting with 'gs-handling-form-submission' demo project:
+https://github.com/djangofan/spring-boot-mortgage-calculator
 ----------------
 1. Using JDK 1.7, the Gradle version of the project will not build.  Project should have a note about that.
 2. The wrapper gradleVersion should be updated to 2.8 (not required, but recommended)
 3. Including the .war task in the build.gradle would have made sense, for optional deployment to another container.
 4. Leave a link in the documentation that explains why using spring-boot with thymeleaf was chosen.  It is very confusing for a beginner, not knowing why.
 5. Had trouble posting a Date object.  Added code in 'config' package to handle it.
-6. Had trouble rendering List object from model within Thymeleaf template. Conversion type problem.
+
 

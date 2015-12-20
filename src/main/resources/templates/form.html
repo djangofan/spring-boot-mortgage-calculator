@@ -2,50 +2,171 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Mortgage Calculator</title>
-    <script type="text/javascript" src="jquery-2.1.4.js"></script>
+    <style type="text/css">
+        body, div  { margin:0px auto; padding:0px; }
+
+        .main { margin:40px; }
+
+        .instructions { font-style:italic; }
+
+        .sample { float:left; margin:10px; padding:4px; border:1px solid #888; width:380px; min-height:100px; }
+
+        .sample h3 { margin:-4px; margin-bottom:10px; padding:4px; background:#555; color:#eee; }
+
+        .sample div { clear:both; }
+        .sample input { float:left; margin:0px auto; }
+
+        .message { color:#f00; font-size:.8em; }
+
+        .log { width:790px; clear:both; }
+
+        .log h3 { background:#966; }
+        #clearLog { float:right; }
+    </style>
+    <!-- <script type="text/javascript" src="jquery-2.1.4.js" /> -->
     <link rel="stylesheet" href="jquery-ui.css" />
-    <script src="external/jquery/jquery.js"></script>
-    <script src="jquery-ui.js"></script>
+    <script src="external/jquery/jquery.js" />
+    <script src="jquery-ui.js" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script th:inline="javascript">
     /*<![CDATA[*/
-    $(document).ready(function(){
-        $('input#interestRate').blur(function(){
-            var num = parseFloat($(this).val());
-            var cleanNum = num.toFixed(2);
-            $(this).val(cleanNum);
-            if(num/cleanNum < 1) {
-                $('#error').text('Please enter only 2 decimal places, we have truncated to 2 precision points.');
-            }
-        });
         $(function() {
-            $( "#startDate" ).datepicker();
+            // miscellaneous js setup functions
+            $( ".startDate" ).datepicker();
         });
-    });
+    /*]]>*/
+    </script>
+    <script th:inline="javascript">
+    /*<![CDATA[*/
+        $(function() {
+			// jQuery formatCurrency plugin: http://plugins.jquery.com/project/formatCurrency
+
+			// Format while typing & warn on decimals entered, 2 decimal places
+			$('#formatWhileTypingAndWarnOnDecimalsEntered2').blur(function() {
+				$('#formatWhileTypingAndWarnOnDecimalsEnteredNotification2').html(null);
+				$(this).formatCurrency({ colorize: true, negativeFormat: '-%s%n', roundToDecimalPlace: 2 });
+			})
+			.keyup(function(e) {
+				var e = window.event || e;
+				var keyUnicode = e.charCode || e.keyCode;
+				if (e !== undefined) {
+					switch (keyUnicode) {
+						case 16: break; // Shift
+						case 17: break; // Ctrl
+						case 18: break; // Alt
+						case 27: this.value = ''; break; // Esc: clear entry
+						case 35: break; // End
+						case 36: break; // Home
+						case 37: break; // cursor left
+						case 38: break; // cursor up
+						case 39: break; // cursor right
+						case 40: break; // cursor down
+						case 78: break; // N (Opera 9.63+ maps the "." from the number key section to the "N" key too!) (See: http://unixpapa.com/js/key.html search for ". Del")
+						case 110: break; // . number block (Opera 9.63+ maps the "." from the number block to the "N" key (78) !!!)
+						case 190: break; // .
+						default: $(this).formatCurrency({ colorize: true, negativeFormat: '-%s%n', roundToDecimalPlace: -1, eventOnDecimalsEntered: true });
+					}
+				}
+			})
+			.bind('decimalsEntered', function(e, cents) {
+				if (String(cents).length > 2) {
+					var errorMsg = 'Please do not enter any cents (0.' + cents + ')';
+					$('#formatWhileTypingAndWarnOnDecimalsEnteredNotification2').html(errorMsg);
+					log('Event on decimals entered: ' + errorMsg);
+				}
+			});
+
+			// Warn on decimals entered, 2 decimal places
+			$('#warnOnDecimalsEntered2').blur(function() {
+				$('#warnOnDecimalsEnteredNotification2').html(null);
+				$(this).formatCurrency({ roundToDecimalPlace: 2, eventOnDecimalsEntered: true });
+			})
+			.bind('decimalsEntered', function(e, cents) {
+				var errorMsg = 'Please do not enter any cents (0.' + cents + ')';
+				$('#warnOnDecimalsEnteredNotification2').html(errorMsg);
+				log('Event on decimals entered: ' + errorMsg);
+			});
+
+			// Format while typing & warn on decimals entered, no cents
+			$('#formatWhileTypingAndWarnOnDecimalsEntered').blur(function() {
+				$('#formatWhileTypingAndWarnOnDecimalsEnteredNotification').html(null);
+				$(this).formatCurrency({ colorize: true, negativeFormat: '-%s%n', roundToDecimalPlace: 0 });
+			})
+			.keyup(function(e) {
+				var e = window.event || e;
+				var keyUnicode = e.charCode || e.keyCode;
+				if (e !== undefined) {
+					switch (keyUnicode) {
+						case 16: break; // Shift
+						case 27: this.value = ''; break; // Esc: clear entry
+						case 35: break; // End
+						case 36: break; // Home
+						case 37: break; // cursor left
+						case 38: break; // cursor up
+						case 39: break; // cursor right
+						case 40: break; // cursor down
+						case 78: break; // N (Opera 9.63+ maps the "." from the number key section to the "N" key too!) (See: http://unixpapa.com/js/key.html search for ". Del")
+						case 110: break; // . number block (Opera 9.63+ maps the "." from the number block to the "N" key (78) !!!)
+						case 190: break; // .
+						default: $(this).formatCurrency({ colorize: true, negativeFormat: '-%s%n', roundToDecimalPlace: -1, eventOnDecimalsEntered: true });
+					}
+				}
+			})
+			.bind('decimalsEntered', function(e, cents) {
+				var errorMsg = 'Please do not enter any cents (0.' + cents + ')';
+				$('#formatWhileTypingAndWarnOnDecimalsEnteredNotification').html(errorMsg);
+				log('Event on decimals entered: ' + errorMsg);
+			});
+
+			// Warn on decimals entered, no cents
+			$('#warnOnDecimalsEntered').blur(function() {
+				$('#warnOnDecimalsEnteredNotification').html(null);
+				$(this).formatCurrency({ roundToDecimalPlace: 0, eventOnDecimalsEntered: true });
+			})
+			.bind('decimalsEntered', function(e, cents) {
+				var errorMsg = 'Please do not enter any cents (0.' + cents + ')';
+				$('#warnOnDecimalsEnteredNotification').html(errorMsg);
+				log('Event on decimals entered: ' + errorMsg);
+			});
+
+			function log(text) {
+				$('#divLog').prepend('<div>' + text + '</div>');
+			}
+
+			$('#clearLog').click(function() {
+				$('#divLog').empty();
+			});
+
+		});
     /*]]>*/
     </script>
 </head>
 <body>
-	<h1>Form</h1>
-    <form action="#" th:action="@{/showSchedule}" th:object="${monthlyAmortizationSchedule}" method="post">
-        <p>startDate: <input type="text" th:id="startDate" th:field="*{startDate}" /></p>
-    	<p>interestRate: <input type="text" id="interestRate" name="interestRate" th:field="*{interestRate}" /></p>
-        <p>initialBalance: <input type="text" th:field="*{initialBalance}" /></p>
-        <p>durationInMonths: <input type="number" th:field="*{durationInMonths}" /></p>
-        <p>futureValue: <input type="text" th:field="*{futureValue}" /></p>
-        <p>paymentType: <input type="number" th:field="*{paymentType}" /></p>
-        <p>monthlyPayment: <input type="text" th:field="*{monthlyPayment}" /></p>
-        <input type="hidden" th:field="*{paymentList}" />
-        <p><input type="submit" value="Calculate" /> <input type="reset" value="Reset" /></p>
-    </form>
+<div class="main">
+    <h1>Mortgage Calculator Form</h1>
+    <p class="instructions">Type "123456.789" into the fields below to see the formatting.</p>
+    <div class="sample">
+        <form action="#" th:action="@{/showSchedule}" th:object="${monthlyAmortizationSchedule}" method="post">
+            <p><input th:class="startDate" type="text" th:field="*{startDate}" /> &nbsp;startDate</p>
+    	    <p><input th:class="interestRate" type="text" th:field="*{interestRate}" /> &nbsp;interestRate</p>
+            <p><input th:class="initialBalance" type="text" th:id="formatWhileTypingAndWarnOnDecimalsEntered2" th:field="*{initialBalance}" /> &nbsp;initialBalance&nbsp;
+                <span th:id="formatWhileTypingAndWarnOnDecimalsEnteredNotification2" th:class="message"></span></p>
+            <p><input th:class="durationInMonths" type="number" th:field="*{durationInMonths}" /> &nbsp;durationInMonths</p>
+            <p><input th:class="futureValue" type="text" th:field="*{futureValue}" /> &nbsp;futureValue</p>
+            <p><input th:class="paymentType" type="number" th:field="*{paymentType}" /> &nbsp;paymentType</p>
+            <p><input th:class="monthlyPayment" type="text" th:field="*{monthlyPayment}" /> &nbsp;monthlyPayment</p>
+            <p><input type="submit" value="Calculate" /> <input type="reset" value="Reset" /></p>
+        </form>
+    </div>
     <br/>
+    <div class="sample log">
+        <input type="button" id="clearLog" value="clear" />
+        <h3>Log</h3>
+        <br />
+        <div id="divLog"></div>
+    </div>
     <br/>
-    <hr/>
-    <script type="text/javascript">
-        $(document).ready(function(){
-          $("#footer").html("YES: jQuery is loaded locally from '/external/jquery/jquery.js'.");
-        });
-    </script>
     <div id="footer"></div>
+    </div>
 </body>
 </html>
