@@ -50,7 +50,7 @@ public class MortgageCalculatorController
         double monthlyPayment = FinanceService.pmt(FinanceService.getMonthlyInterestRate(interestRate), durationInMonths, initialBalance, futureValue, paymentType);
         monthlyAmortizationSchedule.setMonthlyPayment(monthlyPayment);
 
-        System.out.println("SCHEDULE[" + monthlyAmortizationSchedule.toString() + "]");
+        //System.out.println("SCHEDULE[" + monthlyAmortizationSchedule.toString() + "]");
 
         Date loopDate = startDate;
         double balance = initialBalance;
@@ -67,7 +67,7 @@ public class MortgageCalculatorController
             accumulatedInterest += interestPaid;
 
             Payment payment = new Payment(paymentNumber, loopDate, balance, principalPaid, interestPaid, accumulatedInterest);
-            System.out.println("PAYMENT[" + payment.toString() + "]");
+            //System.out.println("PAYMENT[" + payment.toString() + "]");
 
             monthlyAmortizationSchedule.addPayment(payment);
 
