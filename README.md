@@ -29,3 +29,10 @@ Just a mortgage calculator application using spring-boot and Thymeleaf.
 2. Then, place the .war in your Tomcat webapps dir.
 3. Navigate locally to http://localhost:8080/mortgage-calculator/ or http://localhost:8080/
 
+# Images Of Application
+
+Form page:
+![alt text][form.png]
+
+Schedule page:
+![alt text][schedule.png]
