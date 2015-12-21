@@ -28,8 +28,8 @@ Just a mortgage calculator application using spring-boot and Thymeleaf.
 
 TODO features:
 
-7. On the amortization page, be able to add an increase payment at any point during the loan term and recalculate the ending date (with remainder).
-8. If user enters desired mortgage payment, clear the 'durationInMonths' field, and calculate the loan term with that payment.  Do not allow infinity.
+- On the amortization page, be able to add an increase payment at any point during the loan term and recalculate the ending date (with remainder).
+- If user enters desired mortgage payment, clear the 'durationInMonths' field, and calculate the loan term with that payment.  Do not allow infinity.
 
 
 # How-To
