@@ -28,9 +28,10 @@ Just a mortgage calculator application using spring-boot and Thymeleaf.
 
 # How-To
 
-1. Using Maven, run 'mvn clean install' to build the .war file.
-2. Then, place the .war in your Tomcat webapps dir.
-3. Navigate locally to http://localhost:8080/mortgage-calculator/ or http://localhost:8080/
+1. I use IntelliJ-IDEA programming IDE, but this might also work with Eclipse or "Spring Source Suite".
+2. Using Gradle, run 'gradle clean build' to build the .war application archive.
+3. To run the application, run 'gradle bootRun'.
+4. Navigate locally to http://localhost:8080/
 
 # Images Of Application
 
