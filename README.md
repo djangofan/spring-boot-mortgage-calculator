@@ -32,7 +32,10 @@ Just a mortgage calculator application using spring-boot and Thymeleaf.
 # Images Of Application
 
 Form page:
+
 ![alt text](https://raw.githubusercontent.com/djangofan/spring-boot-mortgage-calculator/master/form.png)
 
 Schedule page:
-![alt text][schedule.png]
+
+![alt text](https://raw.githubusercontent.com/djangofan/spring-boot-mortgage-calculator/master/schedule.png)
+
