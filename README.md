@@ -28,10 +28,12 @@ Just a mortgage calculator application using spring-boot and Thymeleaf.
 
 # How-To
 
-1. I use IntelliJ-IDEA programming IDE, but this might also work with Eclipse or "Spring Source Suite".
-2. Using Gradle, run 'gradle clean build' to build the .war application archive.
-3. To run the application, run 'gradle bootRun'.
-4. Navigate locally to http://localhost:8080/
+1. Install Gradle on your local system.  Put GRADLE_HOME/bin on your PATH variable.
+2. Make sure you have Java 1.8 JDK (not 1.7 and not a JRE).
+3. Import this Gradle project into your IDE.  I use IntelliJ-IDEA, but this might also work with Eclipse or "Spring Source Suite".
+4. Using Gradle, or a 'run configuration' in your IDE, run 'gradle clean build' to build the .war application archive.
+5. To run the application, run 'gradle bootRun'.
+6. Navigate locally to http://localhost:8080/
 
 # Images Of Application
 
