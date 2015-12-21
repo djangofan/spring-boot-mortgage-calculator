@@ -11,6 +11,10 @@ Just a mortgage calculator application using spring-boot and Thymeleaf.
     <td>0.90</td>
     <td>Initial prototype.</td>
   </tr>
+  <tr>
+    <td>1.0.0</td>
+    <td>Initial release.</td>
+  </tr>
 </table>
 
 # Features
