@@ -19,9 +19,12 @@ Just a mortgage calculator application using spring-boot and Thymeleaf.
 
 # Features
 
-1. Displays all payment dates in amortization.
-2. Supports compounded "end of period" payments as well as up-front payments.
-3.
+1. Displays all payment dates during the loan amortization.
+2. Supports compounded "end of period" payment type as well as up-front payment type.
+3. Variable interest rate.
+4. Variable initial loan balance.
+5. Will calculate a arbitrary future value.
+6. Calculates monthly payment.
 
 # How-To
 
