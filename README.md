@@ -26,6 +26,11 @@ Just a mortgage calculator application using spring-boot and Thymeleaf.
 5. Will calculate a arbitrary future value.
 6. Calculates monthly payment.
 
+TODO features:
+7. On the amortization page, be able to add an increase payment at any point during the loan term and recalculate the ending date (with remainder).
+8. If user enters desired mortgage payment, clear the 'durationInMonths' field, and calculate the loan term with that payment.  Do not allow infinity.
+
+
 # How-To
 
 1. Install Gradle on your local system.  Put GRADLE_HOME/bin on your PATH variable.
