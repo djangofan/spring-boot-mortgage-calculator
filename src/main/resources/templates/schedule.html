@@ -2,7 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Mortgage Calculator</title>
-    <script type="text/javascript" src="jquery-2.1.4.js"></script>
+    <style type="text/css">
+        body, div { margin:0px auto; padding:0px; }
+        .main { margin:40px; }
+        table, th, td { border: 1px solid black; }
+        .odd {background-color: #f2f2f2}
+        .righty {
+            float:right;
+        }
+    </style>
     <link rel="stylesheet" href="jquery-ui.css" />
     <script src="external/jquery/jquery.js"></script>
     <script src="jquery-ui.js"></script>
@@ -23,10 +31,13 @@
     </script>
 </head>
 <body>
+<div class="main">
+    <div class="righty">
     <form action="/">
         <input type="submit" value="Reset" />
-    </form><br/>
-	<h1>Result</h1>
+    </form>
+        </div>
+    <div class="schedule">
     <table border="1">
         <tr><th>Parameter</th><th>Value</th></tr>
         <tr><td>startDate</td><td th:class="startDate" th:text="${{#dates.format(monthlyAmortizationSchedule.startDate, 'MM/dd/yyyy')}}">startDate</td></tr>
@@ -62,5 +73,7 @@
     <form action="/">
         <input type="submit" value="Reset" />
     </form>
+        </div>
+    </div>
 </body>
 </html>

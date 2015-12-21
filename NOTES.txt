@@ -8,3 +8,5 @@ https://github.com/djangofan/spring-boot-mortgage-calculator
 5. Had trouble posting a Date object.  Added code in 'config' package to handle it.
 
 
+Want to use:
+http://www.chartjs.org/docs/
