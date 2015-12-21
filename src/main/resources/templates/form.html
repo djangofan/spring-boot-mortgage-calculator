@@ -3,18 +3,19 @@
 <head>
     <title>Mortgage Calculator</title>
     <style type="text/css">
-        body, div { margin:0px auto; padding:0px; }
-        .main { margin:40px; }
+        body, div { margin:0px auto; padding:0px;  }
+        .main { margin:40px; background-color:lightblue;}
         .instructions { font-style:italic; }
 
         .form { float:left; margin:10px; padding:4px; border:1px solid #888; width:380px; min-height:100px; }
-        .form h3 { margin:-4px; margin-bottom:10px; padding:4px; background:#555; color:#eee; }
+        .form h3 { margin:-4px; margin-bottom:10px; padding:4px; }
         .form div { clear:both; }
         .form input { float:left; margin:0px auto; }
 
         .message { color:#f00; font-size:.8em; }
 
         input { background-color : #d1d1d1; }
+        input[type="button"] { float:right; }
     </style>
     <link rel="stylesheet" href="jquery-ui.css" />
     <script src="external/jquery/jquery.js" />
@@ -23,6 +24,9 @@
     <script th:inline="javascript">
     /*<![CDATA[*/
     $(document).ready(function(){
+        resetFields();
+    });
+    function resetFields() {
         var today = new Date();
         var dd = today.getDate();
         var mm = today.getMonth()+1; //January is 0!
@@ -42,7 +46,7 @@
         $( ".durationInMonths" ).val("360");
         $( ".futureValue" ).val("0.00");
         $( ".paymentType" ).val("0");
-    });
+    }
     function booleanOnly(input) {
         if (input.value <= 0) input.value = 0;
         if (input.value > 0) input.value = 1;
@@ -72,7 +76,7 @@
             <p><input th:class="durationInMonths" type="number" th:field="*{durationInMonths}" /> &nbsp;durationInMonths</p>
             <p><input th:class="futureValue" type="text" th:field="*{futureValue}" onchange="withinBounds(this);" /> &nbsp;futureValue ($)</p>
             <p><input th:class="paymentType" type="number" th:field="*{paymentType}" onchange="booleanOnly(this);" /> &nbsp;paymentType (0 or 1)</p>
-            <p><input type="submit" value="Calculate" /> <input type="reset" value="Reset" /></p>
+            <p><input type="submit" value="Calculate" /> <input type="button" value="Reset Fields" onclick="resetFields()" /></p>
         </form>
     </div>
     <br/>

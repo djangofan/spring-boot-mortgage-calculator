@@ -4,18 +4,18 @@
     <title>Mortgage Calculator</title>
     <style type="text/css">
         body, div { margin:0px auto; padding:0px; }
-        .main { margin:40px; }
+        .main { margin:40px; width:650px; max-width:750px; background-color:lightblue;}
         table, th, td { border: 1px solid black; }
         .odd {background-color: #f2f2f2}
         .righty {
-            float:right;
+        float:right;
         }
     </style>
-    <link rel="stylesheet" href="jquery-ui.css" />
+    <link rel="stylesheet" href="jquery-ui.css"/>
     <script src="external/jquery/jquery.js"></script>
     <script src="jquery-ui.js"></script>
     <script src="jquery.formatCurrency-1.4.0.js"></script>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script th:inline="javascript">
     /*<![CDATA[*/
     $(document).ready(function(){
@@ -33,47 +33,109 @@
 <body>
 <div class="main">
     <div class="righty">
-    <form action="/">
-        <input type="submit" value="Reset" />
-    </form>
-        </div>
+        <form action="/">
+            <input type="submit" value="Reset"/>
+        </form>
+    </div>
     <div class="schedule">
-    <table border="1">
-        <tr><th>Parameter</th><th>Value</th></tr>
-        <tr><td>startDate</td><td th:class="startDate" th:text="${{#dates.format(monthlyAmortizationSchedule.startDate, 'MM/dd/yyyy')}}">startDate</td></tr>
-        <tr><td>interestRate</td><td th:class="interestRate" th:text="${#numbers.formatDecimal(monthlyAmortizationSchedule.interestRate, 0, 'COMMA', 2, 'POINT')} + '%'">interestRate</td></tr>
-        <tr><td>initialBalance</td><td th:class="initialBalance" th:text="${#numbers.formatDecimal(monthlyAmortizationSchedule.initialBalance, 0, 'COMMA', 2, 'POINT')}">initialBalance</td></tr>
-        <tr><td>durationInMonths</td><td th:class="durationInMonths" th:text="${#numbers.formatInteger(monthlyAmortizationSchedule.durationInMonths,0)}">durationInMonths</td></tr>
-        <tr><td>futureValue</td><td th:class="futureValue" th:text="${#numbers.formatDecimal(monthlyAmortizationSchedule.futureValue, 0, 'COMMA', 2, 'POINT')}">futureValue</td></tr>
-        <tr><td>paymentType</td><td th:class="paymentType" th:text="${#numbers.formatInteger(monthlyAmortizationSchedule.paymentType,0)}">paymentType</td></tr>
-        <tr><td>monthlyPayment</td><td th:class="monthlyPayment" th:text="${#numbers.formatDecimal(monthlyAmortizationSchedule.monthlyPayment, 0, 'COMMA', 2, 'POINT')}">monthlyPayment</td></tr>
-    </table>
-    <br/>
-    <h1>Amortization Schedule</h1>
-    <table border="1">
-        <tr>
-            <th>paymentNumber</th>
-            <th>paymentDate</th>
-            <th>balance</th>
-            <th>principalPaid</th>
-            <th>interestPaid</th>
-            <th>accumulatedInterest</th>
-        </tr>
-        <tr th:each="payment,iterStat : ${monthlyAmortizationSchedule.paymentList}" th:class="${iterStat.odd}? 'odd'">
-            <td th:class="paymentNumber" th:text="${#numbers.formatInteger(payment.paymentNumber,0)}">paymentNumber</td>
-            <td th:class="paymentDate" th:text="${#dates.format(payment.paymentDate, 'MM/dd/yyyy')}">paymentDate</td>
-            <td th:class="balance" th:text="${#numbers.formatDecimal(payment.balance, 0, 'COMMA', 2, 'POINT')}">balance</td>
-            <td th:class="principalPaid" th:text="${#numbers.formatDecimal(payment.principalPaid, 0, 'COMMA', 2, 'POINT')}">principalPaid</td>
-            <td th:class="interestPaid" th:text="${#numbers.formatDecimal(payment.interestPaid, 0, 'COMMA', 2, 'POINT')}">interestPaid</td>
-            <td th:class="accumulatedInterest" th:text="${#numbers.formatDecimal(payment.accumulatedInterest, 0, 'COMMA', 2, 'POINT')}">accumulatedInterest</td>
-        </tr>
-    </table>
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>startDate</td>
+                <td th:class="startDate"
+                    th:text="${{#dates.format(monthlyAmortizationSchedule.startDate, 'MM/dd/yyyy')}}">startDate
+                </td>
+            </tr>
+            <tr>
+                <td>interestRate</td>
+                <td th:class="interestRate"
+                    th:text="${#numbers.formatDecimal(monthlyAmortizationSchedule.interestRate, 0, 'COMMA', 2, 'POINT')} + '%'">
+                    interestRate
+                </td>
+            </tr>
+            <tr>
+                <td>initialBalance</td>
+                <td th:class="initialBalance"
+                    th:text="${#numbers.formatDecimal(monthlyAmortizationSchedule.initialBalance, 0, 'COMMA', 2, 'POINT')}">
+                    initialBalance
+                </td>
+            </tr>
+            <tr>
+                <td>durationInMonths</td>
+                <td th:class="durationInMonths"
+                    th:text="${#numbers.formatInteger(monthlyAmortizationSchedule.durationInMonths,0)}">durationInMonths
+                </td>
+            </tr>
+            <tr>
+                <td>futureValue</td>
+                <td th:class="futureValue"
+                    th:text="${#numbers.formatDecimal(monthlyAmortizationSchedule.futureValue, 0, 'COMMA', 2, 'POINT')}">
+                    futureValue
+                </td>
+            </tr>
+            <tr>
+                <td>paymentType</td>
+                <td th:class="paymentType"
+                    th:text="${#numbers.formatInteger(monthlyAmortizationSchedule.paymentType,0)}">paymentType
+                </td>
+            </tr>
+            <tr>
+                <td>monthlyPayment</td>
+                <td th:class="monthlyPayment"
+                    th:text="${#numbers.formatDecimal(monthlyAmortizationSchedule.monthlyPayment, 0, 'COMMA', 2, 'POINT')}">
+                    monthlyPayment
+                </td>
+            </tr>
+        </table>
+        <br/>
 
-    <br/>
-    <form action="/">
-        <input type="submit" value="Reset" />
-    </form>
+        <h1>Amortization Schedule</h1>
+        <table>
+            <tr>
+                <th>paymentNumber</th>
+                <th>paymentDate</th>
+                <th>balance</th>
+                <th>principalPaid</th>
+                <th>interestPaid</th>
+                <th>accumulatedInterest</th>
+            </tr>
+            <tr th:each="payment,iterStat : ${monthlyAmortizationSchedule.paymentList}"
+                th:class="${iterStat.odd}? 'odd'">
+                <td th:class="paymentNumber" th:text="${#numbers.formatInteger(payment.paymentNumber,0)}">
+                    paymentNumber
+                </td>
+                <td th:class="paymentDate" th:text="${#dates.format(payment.paymentDate, 'MM/dd/yyyy')}">
+                    paymentDate
+                </td>
+                <td th:class="balance" th:text="${#numbers.formatDecimal(payment.balance, 0, 'COMMA', 2, 'POINT')}">
+                    balance
+                </td>
+                <td th:class="principalPaid"
+                    th:text="${#numbers.formatDecimal(payment.principalPaid, 0, 'COMMA', 2, 'POINT')}">
+                    principalPaid
+                </td>
+                <td th:class="interestPaid"
+                    th:text="${#numbers.formatDecimal(payment.interestPaid, 0, 'COMMA', 2, 'POINT')}">
+                    interestPaid
+                </td>
+                <td th:class="accumulatedInterest"
+                    th:text="${#numbers.formatDecimal(payment.accumulatedInterest, 0, 'COMMA', 2, 'POINT')}">
+                    accumulatedInterest
+                </td>
+            </tr>
+        </table>
+
+        <br/>
+
+        <div class="righty">
+            <form action="/">
+                <input type="submit" value="Reset"/>
+            </form>
         </div>
     </div>
+</div>
 </body>
 </html>
