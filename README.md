@@ -19,6 +19,10 @@ Just a mortgage calculator application using spring-boot and Thymeleaf.
     <td>1.0.1</td>
     <td>Refactored unnecessary controller logic into separate Service classes.</td>
   </tr>
+  <tr>
+    <td>1.0.2</td>
+    <td>In progress...</td>
+  </tr>
 </table>
 
 # Features
