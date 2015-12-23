@@ -80,16 +80,14 @@ public class MonthlyAmortizationSchedule
     public List<Payment> getPaymentList() { return this.paymentList; }
     public void setPaymentList(List<Payment> paymentList) { this.paymentList = paymentList; }
 
-    /** Add payment to payment list. */
-    public void addPayment(Payment payment) { this.paymentList.add(payment); }
-    /** Get payment by its 0-based position in the paymentList. */
-    public Payment getPaymentByNumber(int paymentNumber) { return this.paymentList.get(paymentNumber); }
+    public void addAllPayments(List<Payment> paymentList) { this.paymentList.addAll(paymentList); }
 
     @Override
     public String toString()
     {
         return "[" + startDate + "," + initialBalance + "," + interestRate + "," + durationInMonths + "," + futureValue + "," + paymentType + "," + monthlyPayment + "]";
     }
+
 
 }
 

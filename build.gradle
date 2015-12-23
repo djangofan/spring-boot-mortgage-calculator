@@ -17,12 +17,12 @@ apply plugin: 'war'
 
 war {
     baseName = 'spring-boot-mortgage-calculator'
-    version =  '1.0.0'
+    version =  '1.0.1'
 }
 
 jar {
     baseName = 'spring-boot-mortgage-calculator'
-    version =  '1.0.0'
+    version =  '1.0.1'
 }
 
 repositories {

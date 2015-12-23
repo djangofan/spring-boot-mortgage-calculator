@@ -9,8 +9,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class MortgageCalculatorController
@@ -50,16 +53,21 @@ public class MortgageCalculatorController
         double monthlyPayment = FinanceService.pmt(FinanceService.getMonthlyInterestRate(interestRate), durationInMonths, initialBalance, futureValue, paymentType);
         monthlyAmortizationSchedule.setMonthlyPayment(monthlyPayment);
 
-        //System.out.println("SCHEDULE[" + monthlyAmortizationSchedule.toString() + "]");
+        List<Payment> paymentList = calculatePaymentList(startDate, initialBalance, durationInMonths, paymentType, interestRate, futureValue);
+        monthlyAmortizationSchedule.addAllPayments(paymentList);
+    }
 
+    public List<Payment> calculatePaymentList(Date startDate, double initialBalance, int durationInMonths, int paymentType, double interestRate, double futureValue)
+    {
+        List<Payment> paymentList = new ArrayList<Payment>();
         Date loopDate = startDate;
         double balance = initialBalance;
         double accumulatedInterest = 0;
-        for (int paymentNumber = 1; paymentNumber <= monthlyAmortizationSchedule.getDurationInMonths(); paymentNumber++)
+        for (int paymentNumber = 1; paymentNumber <= durationInMonths; paymentNumber++)
         {
             if (paymentType == 0)
             {
-                loopDate = addOneMonth(loopDate); // if this is the case, need to make sure interest calculated is correct
+                loopDate = addOneMonth(loopDate);
             }
             double principalPaid = FinanceService.ppmt(FinanceService.getMonthlyInterestRate(interestRate), paymentNumber, durationInMonths, initialBalance, futureValue, paymentType);
             double interestPaid = FinanceService.ipmt(FinanceService.getMonthlyInterestRate(interestRate), paymentNumber, durationInMonths, initialBalance, futureValue, paymentType);
@@ -67,15 +75,15 @@ public class MortgageCalculatorController
             accumulatedInterest += interestPaid;
 
             Payment payment = new Payment(paymentNumber, loopDate, balance, principalPaid, interestPaid, accumulatedInterest);
-            //System.out.println("PAYMENT[" + payment.toString() + "]");
 
-            monthlyAmortizationSchedule.addPayment(payment);
+            paymentList.add(payment);
 
             if (paymentType == 1)
             {
                 loopDate = addOneMonth(loopDate);
             }
         }
+        return paymentList;
     }
 
     private Date addOneMonth(Date date)
