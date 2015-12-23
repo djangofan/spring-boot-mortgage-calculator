@@ -6,22 +6,27 @@ Just a mortgage calculator application using spring-boot and Thymeleaf.
   <tr>
     <th>Tags&#92;Versions</th>
     <th>Description</th>
+    <th>Date</th>
   </tr>
   <tr>
     <td>0.90</td>
     <td>Initial prototype.</td>
+    <td>Dec 19, 2015</td>
   </tr>
   <tr>
     <td>1.0.0</td>
     <td>Initial release.</td>
+    <td>Dec 20, 2015</td>
   </tr>
   <tr>
     <td>1.0.1</td>
     <td>Refactored unnecessary controller logic into separate Service classes.</td>
+    <td>Dec 22, 2015</td>
   </tr>
   <tr>
     <td>1.0.2</td>
     <td>In progress...</td>
+    <td></td>
   </tr>
 </table>
 
