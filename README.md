@@ -1,7 +1,7 @@
 # spring-boot-mortgage-calculator
 Just a mortgage calculator application using spring-boot and Thymeleaf.
 
-# Versions
+## Versions
 <table>
   <tr>
     <th>Tags&#92;Versions</th>
@@ -30,12 +30,12 @@ Just a mortgage calculator application using spring-boot and Thymeleaf.
   </tr>
 </table>
 
-# TO-DO
+## TO-DO
 
 - On the amortization page, be able to add an increase payment at any point during the loan term and recalculate the ending date (with remainder).
 - If user enters desired mortgage payment, clear the 'durationInMonths' field, and calculate the loan term with that payment.  Do not allow infinity.
 
-# Features
+## Features
 
 1. Displays all payment dates during the loan amortization.
 2. Supports compounded "end of period" payment type as well as up-front payment type.
@@ -44,7 +44,7 @@ Just a mortgage calculator application using spring-boot and Thymeleaf.
 5. Will calculate a arbitrary future value.
 6. Calculates monthly payment.
 
-# How-To
+## How-To
 
 1. Install Gradle 2.10+ on your local system.  Put GRADLE_HOME/bin on your PATH variable.
 2. Make sure you have Java 1.8 JDK (not 1.7 and not a JRE).
@@ -53,13 +53,13 @@ Just a mortgage calculator application using spring-boot and Thymeleaf.
 5. To run the application, run 'gradle bootRun'.
 6. Navigate locally to http://localhost:8080/
 
-# Images Of Application
+## Images Of Application
 
-Form page:
+- Form page:
 
 ![alt text](https://raw.githubusercontent.com/djangofan/spring-boot-mortgage-calculator/master/form.png)
 
-Schedule page:
+- Schedule page:
 
 ![alt text](https://raw.githubusercontent.com/djangofan/spring-boot-mortgage-calculator/master/schedule.png)
 
