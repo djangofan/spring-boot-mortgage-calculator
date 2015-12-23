@@ -5,14 +5,21 @@ package app.finance.core.service;
 // http://www.tvmcalcs.com/index.php/tvm/formulas/regular_annuity_formulas
 // http://www.experts-exchange.com/articles/1948/A-Guide-to-the-PMT-FV-IPMT-and-PPMT-Functions.html
 
+import org.springframework.stereotype.Service;
 import java.text.NumberFormat;
 import java.text.ParseException;
 
-public class FinanceService {
-    private static final NumberFormat nfPercent;
-    private static final NumberFormat nfCurrency;
+/**
+ * Calculates payments and values of a loan amortization.
+ */
+@Service
+public class PaymentService
+{
+    private final NumberFormat nfPercent;
+    private final NumberFormat nfCurrency;
 
-    static {
+    PaymentService()
+    {
         // establish percentage formatter.
         nfPercent = NumberFormat.getPercentInstance();
         nfPercent.setMinimumFractionDigits(2);
@@ -28,10 +35,10 @@ public class FinanceService {
      * Format passed number value to appropriate monetary string for display.
      *
      * @param number
-     *
      * @return localized currency string (e.g., "$1,092.20").
      */
-    public static String formatCurrency(double number) {
+    public String formatCurrency(double number)
+    {
         return nfCurrency.format(number);
     }
 
@@ -39,10 +46,10 @@ public class FinanceService {
      * Format passed number value to percent string for display.
      *
      * @param number
-     *
      * @return percentage string (e.g., "7.00%").
      */
-    public static String formatPercent(double number) {
+    public String formatPercent(double number)
+    {
         return nfPercent.format(number);
     }
 
@@ -50,20 +57,21 @@ public class FinanceService {
      * Convert passed string to numerical percent for use in calculations.
      *
      * @param s string as a percent, such as 7.00
-     *
      * @return <code>double</code> representing percentage as a decimal.
      * @throws ParseException if string is not a valid representation of a percent.
      */
-    public static double stringToPercent(String s) throws ParseException {
+    public double stringToPercent(String s) throws ParseException
+    {
         return nfPercent.parse(s).doubleValue();
     }
 
     /**
      * Calculates interest rate on a monthly basis for compounding purposes.
+     *
      * @param interestRate interest rate expresses as a whole number
      * @return a fraction of the yearly interest rate
      */
-    public static double getMonthlyInterestRate(double interestRate)
+    public double getMonthlyInterestRate(double interestRate)
     {
         return interestRate / 100 / 12;
     }
@@ -77,10 +85,10 @@ public class FinanceService {
      * @param pv   present value -- borrowed or invested principal.
      * @param fv   future value of loan or annuity.
      * @param type when payment is made: beginning of period is 1; end, 0.
-     *
      * @return <code>double</code> representing periodic payment amount.
      */
-    public static double pmt(double r, int nper, double pv, double fv, int type) {
+    public double pmt(double r, int nper, double pv, double fv, int type)
+    {
         if (r == 0) {
             return -(pv + fv) / nper;
         }
@@ -99,26 +107,28 @@ public class FinanceService {
 
     /**
      * Overloaded pmt() call omitting type.
-     *
+     * <p/>
      * The 'type' defaults to 0, which is 'payments made at end of periods'.
      *
      * @return double
      * @see #pmt(double, int, double, double, int)
      */
-    public static double pmt(double r, int nper, double pv, double fv) {
+    public double pmt(double r, int nper, double pv, double fv)
+    {
         return pmt(r, nper, pv, fv, 0);
     }
 
     /**
      * Overloaded pmt() call omitting type and fv.
-     *
+     * <p/>
      * The 'fv' defaults to 0, showing 'intent to finish annuity'.
-     *   See http://www.excelfunctions.net/Excel-Nper-Function.html
+     * See http://www.excelfunctions.net/Excel-Nper-Function.html
      *
      * @return double
      * @see #pmt(double, int, double, double, int)
      */
-    public static double pmt(double r, int nper, double pv) {
+    public double pmt(double r, int nper, double pv)
+    {
         return pmt(r, nper, pv, 0, 0);
     }
 
@@ -131,10 +141,10 @@ public class FinanceService {
      * @param c    periodic payment amount.
      * @param pv   present value -- borrowed or invested principal.
      * @param type when payment is made: beginning of period is 1; end, 0.
-     *
      * @return <code>double</code> representing future principal value.
      */
-    public static double fv(double r, int nper, double c, double pv, int type) {
+    public double fv(double r, int nper, double c, double pv, int type)
+    {
         if (r == 0) return pv;
 
         // account for payments at beginning of period versus end.
@@ -155,7 +165,8 @@ public class FinanceService {
      *
      * @see #fv(double, int, double, double, int)
      */
-    public static double fv(double r, int nper, double c, double pv) {
+    public double fv(double r, int nper, double c, double pv)
+    {
         return fv(r, nper, c, pv, 0);
     }
 
@@ -169,12 +180,12 @@ public class FinanceService {
      * @param pv   present value -- borrowed or invested principal.
      * @param fv   future value of loan or annuity.
      * @param type when payment is made: beginning of period is 1; end, 0.
-     *
      * @return <code>double</code> representing interest portion of payment.
      * @see #pmt(double, int, double, double, int)
      * @see #fv(double, int, double, double, int)
      */
-    public static double ipmt(double r, int per, int nper, double pv, double fv, int type) {
+    public double ipmt(double r, int per, int nper, double pv, double fv, int type)
+    {
         // Prior period (i.e., per-1) balance times periodic interest rate.
         // i.e., ipmt = fv(r, per-1, c, pv, type) * r
         // where c = pmt(r, nper, pv, fv, type)
@@ -199,12 +210,12 @@ public class FinanceService {
      * @param pv   present value -- borrowed or invested principal.
      * @param fv   future value of loan or annuity.
      * @param type when payment is made: beginning of period is 1; end, 0.
-     *
      * @return <code>double</code> representing principal portion of payment.
      * @see #pmt(double, int, double, double, int)
      * @see #ipmt(double, int, int, double, double, int)
      */
-    public static double ppmt(double r, int per, int nper, double pv, double fv, int type) {
+    public double ppmt(double r, int per, int nper, double pv, double fv, int type)
+    {
         // Calculated payment per period minus interest portion of that period.
         // i.e., ppmt = c - i
         // where c = pmt(r, nper, pv, fv, type)
