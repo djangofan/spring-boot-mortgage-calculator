@@ -15,14 +15,18 @@ apply plugin: 'idea'
 apply plugin: 'spring-boot'
 apply plugin: 'war'
 
+ext {
+    appVersion = "1.0.2"
+}
+
 war {
     baseName = 'spring-boot-mortgage-calculator'
-    version =  '1.0.1'
+    version =  appVersion
 }
 
 jar {
     baseName = 'spring-boot-mortgage-calculator'
-    version =  '1.0.1'
+    version =  appVersion
 }
 
 repositories {
