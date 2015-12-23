@@ -33,7 +33,7 @@ public class MortgageCalculatorController
         {
             System.out.println( "There are errors! " + bindingResult.getAllErrors().toString() );
         }
-        amortizationService.initMonthlyAmortizationSchedule(monthlyAmortizationSchedule);
+        amortizationService.initializeUnknownFields(monthlyAmortizationSchedule);
         model.addAttribute(monthlyAmortizationSchedule);
 
         return "schedule";

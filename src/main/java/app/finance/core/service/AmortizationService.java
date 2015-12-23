@@ -19,10 +19,10 @@ public class AmortizationService
     private PaymentService paymentService;
 
     /**
-     * Modifies reference to monthlyAmortizationSchedule before passing that model to redirected template.
-     * @param monthlyAmortizationSchedule
+     * Modifies reference to monthlyAmortizationSchedule to resolve values of empty fields.
+     * @param monthlyAmortizationSchedule object containing all required loan parameters and calculations
      */
-    public void initMonthlyAmortizationSchedule(MonthlyAmortizationSchedule monthlyAmortizationSchedule)
+    public void initializeUnknownFields(MonthlyAmortizationSchedule monthlyAmortizationSchedule)
     {
         // extract required parameters
         Date startDate = monthlyAmortizationSchedule.getStartDate();
@@ -43,12 +43,12 @@ public class AmortizationService
 
     /**
      * Calculates the monthly payment and the list of payments given parameters.
-     * @param startDate
-     * @param initialBalance
-     * @param durationInMonths
-     * @param paymentType
-     * @param interestRate
-     * @param futureValue
+     * @param startDate loan start date
+     * @param initialBalance loan initial balance
+     * @param durationInMonths loan duration in months
+     * @param paymentType loan payment type
+     * @param interestRate loan interest rate
+     * @param futureValue loan expected future value
      * @return List of payments and the monthly payment amount
      */
     public List<Payment> calculatePaymentList(Date startDate, double initialBalance, int durationInMonths, int paymentType, double interestRate, double futureValue)
@@ -80,6 +80,11 @@ public class AmortizationService
         return paymentList;
     }
 
+    /**
+     * Adds a month to a date, for purposes of putting a date on each Payment object.
+     * @param date any arbitrary date
+     * @return Date a date one month later
+     */
     private Date addOneMonth(Date date)
     {
         Calendar cal = Calendar.getInstance();
